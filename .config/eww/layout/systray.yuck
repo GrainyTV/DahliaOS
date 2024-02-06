@@ -1,0 +1,30 @@
+(defwindow systray
+    :monitor 0
+    :geometry (geometry
+        :width 100
+        :height 80
+        :anchor "bottom right"
+        :x 179
+        :y 58
+    )
+    :stacking "overlay"
+    :exclusive false
+
+    (box :orientation "vertical"
+        :class "popup-window"
+
+        (centerbox :orientation "horizontal"
+            :class "popup-subwindow"
+
+            (image)
+            (button :onclick "scripts/gyazo.sc \"$( slurp -w0 )\" &"
+
+                (image :path "images/gyazo.png"
+                    :image-width 30
+                    :image-height 30
+                )
+            )
+            (image)
+        )
+    )
+)

@@ -1,0 +1,115 @@
+@import "./design/colors";
+@import "./design/popup";
+
+* {
+    all: unset;
+    color: $black;
+}
+
+.status-bar {
+    background-color: $white;
+}
+
+.left-menu {
+    padding: 0.5em;
+}
+
+.button-inactive:hover {
+    background-color: rgba($white, 0.75);
+}
+
+.button-inactive {
+    border-radius: 0.35em;
+}
+
+.button-active {
+    border-radius: 0.35em;
+    background-color: $orange;
+}
+
+.power-menu {
+    background-color: $gray;
+    border-radius: 1em;
+    padding: 0.15em;
+    box-shadow: 0 0 1em $black;
+}
+
+.power-menu-texts {
+    color: $black;
+    padding: 1em;
+}
+
+.power-menu-buttons {
+    background-color: $white;
+    border-radius: 0 0 1em 1em;
+    padding: 0 1em 1em 1em;
+}
+
+.power-button {
+    margin-top: 1em;
+    background-color: $orange;
+    border-radius: 0.35em;
+}
+
+.power-button:hover {
+    background-color: $dark-orange;
+}
+
+.title {
+    font-size: 1.6em;
+}
+
+.search-menu {
+    background-color: rgba($white, 0.6);
+    border-radius: 1em;
+    padding: 1em;
+}
+
+.cancel-button {
+    background-color: rgba($orange, 0.5);
+}
+
+.test {
+    background-color: black;
+}
+
+.test2 {
+    background-color: $orange;
+}
+
+
+.workspace-image-button-selected {
+    border: 2px solid $black;
+    border-radius: 0.75em;
+    background-image: url("../hypr/images/modern.png");
+    background-size: 240px 135px;
+}
+
+.workspace-image-button {
+    border-radius: 0.75em;
+    background-image: url("../hypr/images/modern.png");
+    background-size: cover;
+    box-shadow: 0 0 1em $black;
+}
+
+.workspace-image-disabled-button {
+    border-radius: 0.75em;
+    background-image: url("../hypr/images/modern_bw.png");
+    background-size: cover;
+    box-shadow: 0 0 1em $black;
+}
+
+.workspace-background {
+    background-color: $gray;
+}
+
+.workspace-foreground {
+    background-color: $white;
+}
+
+.workspace-new {
+    background-color: $gray;
+    padding: 1em;
+    border-radius: 1em;
+    border: 2px solid $dark-gray;
+}

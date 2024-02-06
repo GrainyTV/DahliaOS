@@ -1,0 +1,12 @@
+.popup-window {
+    background-color: $gray;
+    border-radius: 1em;
+    padding: 0.15em;
+    box-shadow: 0 0 1em $black;
+}
+
+.popup-subwindow {
+    background-color: $white;
+    border-radius: 1em;
+    padding: 0 1em 1em 1em;
+}

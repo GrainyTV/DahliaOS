@@ -1,0 +1,39 @@
+(defwindow searchmenu
+    :monitor 0
+    :geometry (geometry
+        :width "100%"
+        :height "100%"
+        :anchor "center"
+    )
+    :stacking "overlay"
+    :focusable true
+
+    (popup :cancel "scripts/menu_state.sh search_menu_hidden &"
+        :width 600
+        :height 400
+
+        (box :orientation "vertical"
+            :space-evenly false
+            :class "power-menu"
+            :hexpand true
+       
+            (box :orientation "horizontal"
+                :space-evenly false
+                :class "search-menu"
+
+                (image :path "images/search.svg")
+
+                (input :focusable true
+                    :onchange "scripts/search.rb {} &"
+                )
+            )
+
+            (scroll :hscroll false
+                :vscroll true
+                :vexpand true
+                    
+                (literal :content search_content)
+            )
+        )
+    )
+) 

@@ -1,0 +1,57 @@
+(defwidget popup [cancel width height]
+    
+    (box :orientation "vertical"
+        :space-evenly false
+
+        (button :onclick cancel
+            :height { round((res_height - statusbar_height - height) / 2, 0) }
+        )
+        
+        (box
+            :orientation "horizontal"
+            :space-evenly false
+            :vexpand true
+
+            (button :onclick cancel
+                :width { round((res_width - width) / 2, 0) }
+            )
+
+            (children)
+            
+            (button :onclick cancel
+                :width { round((res_width - width) / 2, 0) }
+            )
+        )
+        
+        (button :onclick cancel 
+            :height { round((res_height - statusbar_height - height) / 2, 0) + statusbar_height }
+        )
+    )
+)
+
+(defwidget threebythree []
+
+    (box :orientation "vertical"
+
+        (box :orientation "horizontal"
+
+            (children :nth 0)
+            (children :nth 1)
+            (children :nth 2)
+        )
+
+        (box :orientation "horizontal"
+            
+            (children :nth 3)
+            (children :nth 4)
+            (children :nth 5)
+        )
+
+        (box :orientation "horizontal"
+            
+            (children :nth 6)
+            (children :nth 7)
+            (children :nth 8)
+        )
+    )
+)

@@ -1,0 +1,19 @@
+;; Numeric Variables
+(defvar res_width 1920)
+(defvar res_height 1080)
+(defvar statusbar_height 48)
+
+;; Boolean Variables
+(defvar power_menu_hidden true)
+(defvar search_menu_hidden true)
+(defvar systray_hidden true)
+(defvar workspace_menu_hidden true)
+
+;; String Variables
+(defvar search_content "")
+(defvar workspace_content "[false, false, false, false, false, false, false, false, false]")
+
+;; Functional Variables
+(defpoll time :interval "1s"
+    "date +%H:%M:%S"
+)

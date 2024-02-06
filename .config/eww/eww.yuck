@@ -1,0 +1,86 @@
+(include "layout/variables.yuck")
+(include "layout/custom_widgets.yuck")
+(include "layout/power_menu.yuck")
+(include "layout/search_menu.yuck")
+(include "layout/systray.yuck")
+(include "layout/workspace_menu.yuck")
+
+(defwindow statusbar
+    :monitor 0
+    :geometry (geometry
+        :width "100%"
+        :height 48
+        :anchor "bottom center"
+    )
+    :stacking "fg"
+    :exclusive true
+    
+    (box :class "status-bar"
+        :orientation "horizontal"
+        :space-evenly false
+        :spacing 10
+        :height statusbar_height
+                
+        (box :class "left-menu"
+            :orientation "horizontal"
+            :space-evenly true
+            :halign "start"
+            :spacing 8
+                
+            (button :class { power_menu_hidden ? "button-inactive" : "button-active" }
+                :width 24
+                :onclick "scripts/menu_state.sh power_menu_hidden &"
+                
+                (image :image-height 24
+                    :path "images/apps.svg"
+                )
+            )
+            
+            (button :width 24
+                :onclick "scripts/menu_state.sh search_menu_hidden &"
+                
+                (image :image-height 24
+                    :path "images/search.svg"
+                )
+            )
+            
+            (button :width 24
+                :onclick "scripts/menu_state.sh workspace_menu_hidden &"
+                
+                (image :image-height 24
+                    :path "images/fullscreen_exit.svg"
+                )
+            )
+        )
+        
+        (button :hexpand true
+        )
+        
+        (box :class "right-menu"
+            :orientation "horizontal"
+            :space-evenly false
+            :spacing 16
+
+            (button :onclick "scripts/menu_state.sh systray_hidden &"
+
+                (image :path { systray_hidden == true ? "images/expand_less.svg" : "images/expand_more.svg" })
+            )
+            
+            (button
+                :hexpand true
+
+                (box :orientation "horizontal"
+                    :space-evenly false
+                    :spacing 8
+
+                    (image :path "images/wifi.svg")
+                    (image :path "images/bluetooth.svg")
+                    (image :path "images/settings_ethernet.svg")
+                    (label :text "|")
+                    (label :text time)
+                )
+            )
+            (button (image :path "images/notifications.svg"))
+        )
+    )
+)
