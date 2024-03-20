@@ -10,8 +10,13 @@
 (defvar workspace_menu_hidden true)
 
 ;; String Variables
-(defvar search_content "")
-(defvar workspace_content "[false, false, false, false, false, false, false, false, false]")
+(defvar current_workspace "Default")
+
+;; JSON Variables
+(defvar search_content "[]")
+(deflisten workspace_content :initial "[]"
+    "scala-cli scripts/workspace_listen.sc"
+)
 
 ;; Functional Variables
 (defpoll time :interval "1s"

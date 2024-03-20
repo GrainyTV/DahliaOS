@@ -55,3 +55,33 @@
         )
     )
 )
+
+(defwidget positionedPopup [cancel x y width height]
+    
+    (box :orientation "vertical"
+        :space-evenly false
+
+        (button :onclick cancel
+            :height y
+        )
+        
+        (box :orientation "horizontal"
+            :space-evenly false
+            :height height
+
+            (button :onclick cancel
+                :width x
+            )
+
+            (children)
+            
+            (button :onclick cancel
+                :hexpand true
+            )
+        )
+        
+        (button :onclick cancel 
+            :vexpand true
+        )
+    )
+)

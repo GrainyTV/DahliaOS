@@ -1,0 +1,7 @@
+dependencies:
+ -pfetch
+ -alacritty
+ -pcmanfm-qt
+ -hyprpaper
+ -paru-bin
+ -eww-wayland

@@ -1,0 +1,43 @@
+(defwindow workspaces
+    :monitor 0
+    :geometry (geometry
+        :width "100%"
+        :height "100%"
+    )
+    :focusable false
+    :stacking "overlay"
+
+    (positionedPopup :cancel "eww close workspaces"
+        :x 26
+        :y { res_height - statusbar_height * 2 - 10 }
+        :width 1000
+        :height statusbar_height
+
+        (box :class "popup-window"
+
+            (box :class "popup-subwindow"
+                :orientation "horizontal"
+            
+                (button :onclick "hyprctl dispatch workspace name:Default && eww update current_workspace=$( hyprctl activeworkspace | head -n1 | awk '{ gsub(/[()]/, \"\"); print $4 }' )"
+                    (image :path { current_workspace == "Default" ? "images/radio_button_checked.svg" : "images/radio_button_unchecked.svg" })
+                )
+                
+                (button :onclick "hyprctl dispatch workspace 1 && eww update current_workspace=$( hyprctl activeworkspace | head -n1 | awk '{ gsub(/[()]/, \"\"); print $4 }' )"
+                    (image :path { current_workspace == "1" ? "images/radio_button_checked.svg" : "images/radio_button_unchecked.svg" })
+                )
+                
+                (button :onclick "hyprctl dispatch workspace 2 && eww update current_workspace=$( hyprctl activeworkspace | head -n1 | awk '{ gsub(/[()]/, \"\"); print $4 }' )"
+                    (image :path { current_workspace == "2" ? "images/radio_button_checked.svg" : "images/radio_button_unchecked.svg" })
+                )
+                
+                (button :onclick "hyprctl dispatch workspace 3 && eww update current_workspace=$( hyprctl activeworkspace | head -n1 | awk '{ gsub(/[()]/, \"\"); print $4 }' )"
+                    (image :path { current_workspace == "3" ? "images/radio_button_checked.svg" : "images/radio_button_unchecked.svg" })
+                )
+                
+                (button :onclick "hyprctl dispatch workspace 4 && eww update current_workspace=$( hyprctl activeworkspace | head -n1 | awk '{ gsub(/[()]/, \"\"); print $4 }' )"
+                    (image :path { current_workspace == "4" ? "images/radio_button_checked.svg" : "images/radio_button_unchecked.svg" })
+                )
+            )
+        )
+    )
+)

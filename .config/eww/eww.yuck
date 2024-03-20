@@ -4,6 +4,7 @@
 (include "layout/search_menu.yuck")
 (include "layout/systray.yuck")
 (include "layout/workspace_menu.yuck")
+(include "layout/workspaces.yuck")
 
 (defwindow statusbar
     :monitor 0
@@ -45,7 +46,7 @@
             )
             
             (button :width 24
-                :onclick "scripts/menu_state.sh workspace_menu_hidden &"
+                :onclick { workspace_menu_hidden ? "eww open workspaces" : "eww close workspaces" } ;;"scripts/menu_state.sh workspace_menu_hidden &"
                 
                 (image :image-height 24
                     :path "images/fullscreen_exit.svg"
