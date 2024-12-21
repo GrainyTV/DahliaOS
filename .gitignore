@@ -1,0 +1,8 @@
+/*
+.config/*
+!.config/
+!.config/eww/
+!.config/hypr/
+!refind/
+!.bashrc
+!.gitignore
