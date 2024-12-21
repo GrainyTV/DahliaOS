@@ -29,33 +29,6 @@
     )
 )
 
-(defwidget threebythree []
-
-    (box :orientation "vertical"
-
-        (box :orientation "horizontal"
-
-            (children :nth 0)
-            (children :nth 1)
-            (children :nth 2)
-        )
-
-        (box :orientation "horizontal"
-            
-            (children :nth 3)
-            (children :nth 4)
-            (children :nth 5)
-        )
-
-        (box :orientation "horizontal"
-            
-            (children :nth 6)
-            (children :nth 7)
-            (children :nth 8)
-        )
-    )
-)
-
 (defwidget positionedPopup [cancel x y width height]
     
     (box :orientation "vertical"
@@ -73,7 +46,10 @@
                 :width x
             )
 
-            (children)
+            (box :width width
+
+                (children)
+            )
             
             (button :onclick cancel
                 :hexpand true
@@ -82,6 +58,103 @@
         
         (button :onclick cancel 
             :vexpand true
+        )
+    )
+)
+
+(defwidget triSwitchSlider [name value command stops]
+
+    (box :orientation "horizontal"
+        :space-evenly false
+        :spacing 8
+        :valign "center"
+
+        (button :onclick "eww state"
+            :class "settings-gray-button"
+
+            (image :path "images/${name}_${ value == 0 ? "off" : "on" }.svg"
+                :image-width 48
+                :image-height 48
+            )
+        )
+        
+        (box :hexpand true
+
+            (fancySlider2 :stops stops
+                :value value
+                :command command
+                :size 6
+            )
+        )
+
+        (button :onclick "eww state"
+            :class "settings-gray-button"
+
+            (image :path "images/expand_more.svg"
+                :image-width 48
+                :image-height 48
+            )
+        )
+    )
+)
+
+(defwidget fancySlider [stops value command]
+    
+    (box :orientation "horizontal"
+        :valign "center"
+        :vexpand false
+        :height 6
+        :space-evenly true
+        :spacing { round((278 - (stops + 1) * 4) / stops, 0) }
+        :class "slider-container"
+        :style "background: linear-gradient(90deg, #ff3d00 ${ value * 100 }%, #fbd1c4 ${ value * 100 }%);"
+
+        (for stop in { jq("null", "[range(0; (${stops} + 1))]") }
+
+            (button :active { value == stop / stops ? false : true }
+                :class { value == stop / stops ? "selected-stop" : "slider-stop" }
+                :onclick "${ command } ${ stop / stops * 100 }%"
+                :valign "center"
+                :halign "start"
+                :width 4
+                :height 4
+            )
+        )
+    )
+) 
+
+(defwidget fancySlider2 [size stops value command]
+
+    (overlay
+
+        (box :valign "center"
+            :height size
+            :style "background-color: rgba(107, 113, 127, 0.8);"
+        )
+
+        (box :orientation "horizontal"
+            :valign "center"
+            :height size
+            :spacing 10
+
+            (for i in { jq("null", "[range(0; (${stops} + 1))]") }
+
+                (box :class "test2"
+                    :style "border-radius: 50%;"
+                    :halign "start"
+                    :valign "center"
+                    :width size
+                    :height size
+                )
+            )
+        )
+
+        (scale
+            :min 0
+            :max { stops + 1 }
+            :value value
+            :onchange "{}"
+            :marks { jq("null", "[range(0; (${stops} + 1)) | tostring] | join(\", \")") }
         )
     )
 )

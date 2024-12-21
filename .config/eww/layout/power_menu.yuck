@@ -3,11 +3,10 @@
     :geometry (geometry
         :width "100%"
         :height "100%"
-        :anchor "center"
     )
     :stacking "overlay"
 
-    (popup :cancel "scripts/menu_state.sh power_menu_hidden &"
+    (popup :cancel "eww close powermenu"
         :width 320
         :height 280
 
@@ -34,38 +33,44 @@
                 :space-evenly true
                 :class "power-menu-buttons"
 
-                (button :onclick "scripts/power.sh poweroff &"
+                (button :onclick "loginctl poweroff"
                     :class "power-button"
 
                     (box :orientation "horizontal"
                         :space-evenly false
                         :spacing 4
+                        :class "power-button-entities"
 
-                        (image :path "images/power_settings.svg" :image-width 40)
+                        ;(image :path "images/power_settings.svg" :image-width 40)
+                        (image :path "images/download.svg" :image-width 40)
                         (label :text "Power off")
                     )
                 )
                 
-                (button :onclick "scripts/power.sh sleep &"
+                (button :onclick "loginctl suspend"
                     :class "power-button"
 
                     (box :orientation "horizontal"
                         :space-evenly false
                         :spacing 4
+                        :class "power-button-entities"
 
-                        (image :path "images/brightness_4.svg" :image-width 40)
+                        ;(image :path "images/brightness_4.svg" :image-width 40)
+                        (image :path "images/brightness_4W.svg" :image-width 40)
                         (label :text "Sleep")
                     )
                 )
                 
-                (button :onclick "scripts/power.sh restart &"
+                (button :onclick "loginctl reboot"
                     :class "power-button"
 
                     (box :orientation "horizontal"
                         :space-evenly false
                         :spacing 4
+                        :class "power-button-entities"
 
-                        (image :path "images/refresh.svg" :image-width 40)
+                        ;(image :path "images/refresh.svg" :image-width 40)
+                        (image :path "images/refreshW.svg" :image-width 40)
                         (label :text "Restart")
                     )
                 )

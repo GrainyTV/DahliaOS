@@ -1,69 +1,61 @@
-(defwindow searchmenu
+(defwindow search
     :monitor 0
     :geometry (geometry
-        :width "75%"
-        :height "75%"
-        :anchor "center"
+        :width "100%"
+        :height "100%"
     )
     :stacking "overlay"
     :focusable true
 
-    ;;(popup :cancel "scripts/menu_state.sh search_menu_hidden &"
-    ;;    :width 600
-    ;;    :height 400
+    (positionedPopup :cancel "eww close search"
+        :x { (res_width - 600) / 2 }
+        :y { (res_height - statusbar_height - windowGap - 400) / 2 }
+        :width 600
+        :height 400
 
-    (box
-        :valign "center"
-        :halign "center"
-
-        (button :class "test" :onclick "eww close searchmenu")
-
-        (box :orientation "vertical"
+        (box :class "search-menu"
+            :orientation "vertical"
+            :hexpand false
+            :vexpand false
             :space-evenly false
-            :class "power-menu"
-            ;;:hexpand true
-            :halign "center"
-            :valign "center"
-            :width 600
-            :height 400
-            
-            (box :orientation "horizontal"
-                :space-evenly false
-                :class "search-menu"
+                
+            (overlay :hexpand true
+                :height 50
 
-                (image :path "images/search.svg")
+                (input :class "search-input-container-inputfield"
+                    :onchange "./scripts/search.zig '{}'"
+                    :timeout "60s"
+                )
 
-                (input :onchange "scripts/test.sh {} &")
+                (image :class "search-input-container-icon"
+                    :path "images/search.svg"
+                    :image-width 48
+                    :image-height 48
+                    :halign "start"
+                )
             )
 
             (scroll :hscroll false
                 :vscroll true
                 :vexpand true
 
-                ;;(literal :content search_content)
-
                 (box :class "app-card-container" 
                     :orientation "vertical"
                     :space-evenly false
 
-                    (for app in search_content
+                    (for app in applications
 
                         (button :onclick "gtk-launch ${app.exec} &"
+                            :class "app-card"
 
-                            (box :class "app-card"
-                                :orientation "horizontal"
+                            (box :orientation "horizontal"
                                 :space-evenly false
                                 :spacing 8
                                 
-                                ;;(image :path "${app.icon}"
-                                ;;    :valign "center"
-                                ;;    :halign "start"
-                                ;;)
-
-                                (button :class "icon-image"
-                                    :style "background-image: url(\"${app.icon}\");"
-                                    :width 64
-                                    :height 64
+                                (image :path { app.icon }
+                                    :image-width { app.padded ? 64 : 64 - 2 * iconPadding }
+                                    :image-height { app.padded ? 64 : 64 - 2 * iconPadding }
+                                    :style "padding: ${ app.padded ? 0 : iconPadding }px;"
                                 )
                                 
                                 (box :orientation "vertical"
@@ -71,12 +63,12 @@
                                     :space-evenly false
                                     :valign "center"
 
-                                    (label :class "app-title" 
+                                    (label :class "app-card-title" 
                                         :text "${app.title}"
                                         :xalign 0
                                     )
                                     
-                                    (label :class "app-description" 
+                                    (label :class "app-card-description" 
                                         :text "${app.description}"
                                         :xalign 0
                                     )
@@ -85,7 +77,7 @@
                         )
                     )
                 )
-            )           
+            )  
         )
     )
 )

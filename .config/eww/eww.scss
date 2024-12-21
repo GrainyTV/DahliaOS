@@ -1,14 +1,21 @@
 @import "./design/colors";
 @import "./design/popup";
+@import "./design/settings";
+@import "./design/powermenu";
+@import "./design/search";
+@import "./design/workspaces";
 
 * {
     all: unset;
-    color: $black;
-    font-family: 'Inter';
+    color: $primary-black;
+    font-family: 'Inter Medium';
+    font-feature-settings: 'tnum';
 }
 
 .status-bar {
-    background-color: $white;
+    background-color: $primary-white;
+    border-radius: 8px;
+    box-shadow: 0 0 0.25em $primary-black;
 }
 
 .left-menu {
@@ -16,7 +23,7 @@
 }
 
 .button-inactive:hover {
-    background-color: rgba($white, 0.75);
+    background-color: rgba($primary-white, 0.75);
 }
 
 .button-inactive {
@@ -25,49 +32,11 @@
 
 .button-active {
     border-radius: 0.35em;
-    background-color: $orange;
-}
-
-.power-menu {
-    background-color: $gray;
-    border-radius: 1em;
-    padding: 0.15em;
-    box-shadow: 0 0 1em $black;
-}
-
-.power-menu-texts {
-    color: $black;
-    padding: 1em;
-}
-
-.power-menu-buttons {
-    background-color: $white;
-    border-radius: 0 0 1em 1em;
-    padding: 0 1em 1em 1em;
-}
-
-.power-button {
-    margin-top: 1em;
-    background-color: $orange;
-    border-radius: 0.35em;
-}
-
-.power-button:hover {
-    background-color: $dark-orange;
-}
-
-.title {
-    font-size: 1.6em;
-}
-
-.search-menu {
-    background-color: rgba($white, 0.6);
-    border-radius: 1em;
-    padding: 1em;
+    background-color: $primary-orange;
 }
 
 .cancel-button {
-    background-color: rgba($orange, 0.5);
+    background-color: rgba($primary-orange, 0.5);
 }
 
 .test {
@@ -75,76 +44,5 @@
 }
 
 .test2 {
-    background-color: $orange;
-}
-
-.workspace-image-button-selected {
-    border: 2px solid $black;
-    border-radius: 0.75em;
-    background-image: url("../hypr/images/modern.png");
-    background-size: 240px 135px;
-}
-
-.workspace-image-button {
-    border-radius: 0.75em;
-    background-image: url("../hypr/images/modern.png");
-    background-size: cover;
-    box-shadow: 0 0 1em $black;
-}
-
-.workspace-image-disabled-button {
-    border-radius: 0.75em;
-    background-image: url("../hypr/images/modern_bw.png");
-    background-size: cover;
-    box-shadow: 0 0 1em $black;
-}
-
-.workspace-background {
-    background-color: $gray;
-}
-
-.workspace-foreground {
-    background-color: $white;
-}
-
-.workspace-new {
-    background-color: $gray;
-    padding: 1em;
-    border-radius: 1em;
-    border: 2px solid $dark-gray;
-}
-
-.icon-image {
-    border-radius: 50%;
-    background-size: cover;
-}
-
-.app-card-container {
-    padding: 0 10px;
-}
-
-.app-card-container:first-child {
-    margin-top: 14px;
-}
-
-.app-card {
-    margin-bottom: 14px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-    background-color: $white; 
-}
-
-.app-card:hover {
-  background-color: #f9f9f9;
-}
-
-.app-title {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.app-description {
-    font-size: 14px;
-    color: #666;
+    background-color: $primary-orange;
 }

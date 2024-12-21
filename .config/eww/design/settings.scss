@@ -1,0 +1,85 @@
+.settings-container-main {
+    background-color: $primary-white;
+    border-radius: 1em;
+}
+
+.settings-gray-button {
+    background-color: $primary-dark-gray;
+    border-radius: 50%;
+}
+
+.slider-container {
+    border-radius: 6px;
+}
+
+.slider-stop {
+    background-color: $primary-orange;
+    border-radius: 50%;
+}
+
+.selected-stop {
+    background-color: $primary-orange;
+    border-radius: 50%;
+    margin: -6px;
+}
+
+// scale slider {
+//     background-image: -gtk-scaled(url("fader.png"));
+//     border-radius: 50%;
+//     margin: -15px;
+// }
+
+// scale {
+//     background-color: rgba(green, 0.2);
+//     min-height: 10px;
+// }
+
+// scale highlight {
+//     background-color: purple;
+//     min-height: 10px;
+// }
+
+// scale marks indicator {
+//     background-color: black;
+//     color: transparent;
+//     min-height: 10px;
+//     min-width: 10px;
+//     // with the same amount, it is invisible
+//     // if I increase size to 11px 1 pixel will be outside the scale's bounds
+//     margin-top: -10px;
+//     border-radius: 50%;
+// }
+
+scale slider {
+    background-image: -gtk-scaled(url("fader.png"));
+    border-radius: 50%;
+    margin: -10px;
+}
+
+scale {
+    //background-color: rgba(green, 0.2);
+    min-height: 8px;
+}
+
+scale highlight {
+    background-color: purple;
+    min-height: 8px;
+}
+
+// scale marks indicator {
+//     background-color: black;
+//     color: transparent;
+//     min-height: 8px; /* Slightly less than the margin-top */
+//     min-width: 8px;
+//     border-radius: 50%;
+// }
+
+// scale marks indicator {
+//     background-color: black;
+//     color: transparent;
+//     min-height: 8px; /* Match height to avoid overflow */
+//     min-width: 8px;
+//     margin-top: -8px; /* Align within the track */
+//     border-radius: 50%;
+//     transform: translateY(-2px); /* Adjust the vertical position inside the track */
+// }

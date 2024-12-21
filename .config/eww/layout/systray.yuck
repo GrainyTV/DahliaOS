@@ -7,10 +7,10 @@
     :focusable false
     :stacking "overlay"
 
-    (positionedPopup :cancel "eww close systray"
-        :x 1660
+    (positionedPopup :cancel "eww close systray && eww update systray_hidden=true"
+        :x 1646
         :y { res_height - statusbar_height * 2 - 10 }
-        :width 100
+        :width 60
         :height statusbar_height
 
         (box :class "popup-window"
@@ -18,7 +18,7 @@
             (box :class "popup-subwindow" 
                 :orientation "horizontal"
 
-                (button :onclick "scripts/gyazo.sh \"$( slurp -w0 )\" &"
+                (button :onclick "scripts/gyazo.sh &"
 
                     (image :path "images/gyazo.png"
                         :image-width 30

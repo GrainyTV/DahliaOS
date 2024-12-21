@@ -2,23 +2,44 @@
 (defvar res_width 1920)
 (defvar res_height 1080)
 (defvar statusbar_height 48)
+(defvar windowGap 20)
+(defvar iconPadding 5)
+(defvar debounceTime 0)
 
 ;; Boolean Variables
 (defvar power_menu_hidden true)
 (defvar search_menu_hidden true)
 (defvar systray_hidden true)
-(defvar workspace_menu_hidden true)
+(defvar workspaceMenuHidden true)
+(defvar workspaceMenuVisible false)
+(defvar settings_hidden true)
 
-;; String Variables
-(defvar current_workspace "Default")
 
 ;; JSON Variables
-(defvar search_content "[]")
-(deflisten workspace_content :initial "[]"
-    "scala-cli scripts/workspace_listen.sc"
+(defvar applications "[]")
+
+;; Listening Variables
+(deflisten currentWorkspace :initial 1
+    "/home/personal/Documents/Test/Coding/UserSpace/workspaces/Program.fs --active"
+)
+
+(deflisten usedWorkspaces :initial "[1]"
+    "/home/personal/Documents/Test/Coding/UserSpace/workspaces/Program.fs --in-use"
 )
 
 ;; Functional Variables
 (defpoll time :interval "1s"
     "date +%H:%M:%S"
+)
+
+(defpoll date :interval "1m"
+    "date +%Y.%m.%d."
+)
+
+(defpoll volume :interval "1s"
+    "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ print $2 }'"
+)
+
+(defpoll brightness :interval "1s"
+    "brightnessctl --device=ddcci* get"
 )

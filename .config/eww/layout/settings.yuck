@@ -1,0 +1,115 @@
+(defwindow settings
+    :monitor 0
+    :geometry (geometry
+        :width "100%"
+        :height "100%"
+    )
+    :focusable false
+    :stacking "overlay"
+
+    (positionedPopup :cancel "eww close settings && eww update settings_hidden=true"
+        :x 1520
+        :y 422
+        :width 390
+        :height 600
+
+        (box :orientation "vertical"
+            :class "settings-container-main"
+
+            (triSwitchSlider :name "volume"
+                :value volume
+                :command "wpctl set-volume @DEFAULT_AUDIO_SINK@"
+                :stops 20
+            )
+
+            ;;(triSwitchSlider :name "brightness"
+            ;;    :value brightness
+            ;;    :command "brightnessctl --device=ddcci* set"
+            ;;    :stops 10
+            ;;)
+
+            (overlay
+
+                (box :valign "center"
+                    :height 8
+                    :style "background-color: rgba(107, 113, 127, 0.8);"
+                )
+
+                (box :orientation "horizontal"
+                    :valign "center"
+                    :height 8
+
+                    (box :class "test2"
+                        :style "border-radius: 50%;"
+                        :halign "center"
+                        :valign "center"
+                        :width 8
+                        :height 8
+                    )
+                                        (box :class "test2"
+                        :style "border-radius: 50%;"
+                        :halign "center"
+                        :valign "center"
+                        :width 8
+                        :height 8
+                    )
+                    (box :class "test2"
+                        :style "border-radius: 50%;"
+                        :halign "center"
+                        :valign "center"
+                        :width 8
+                        :height 8
+                    )
+                    (box :class "test2"
+                        :style "border-radius: 50%;"
+                        :halign "center"
+                        :valign "center"
+                        :width 8
+                        :height 8
+                    )
+                                        (box :class "test2"
+                        :style "border-radius: 50%;"
+                        :halign "center"
+                        :valign "center"
+                        :width 8
+                        :height 8
+                    )
+                                        (box :class "test2"
+                        :style "border-radius: 50%;"
+                        :halign "center"
+                        :valign "center"
+                        :width 8
+                        :height 8
+                    )
+                                        (box :class "test2"
+                        :style "border-radius: 50%;"
+                        :halign "center"
+                        :valign "center"
+                        :width 8
+                        :height 8
+                    )
+                                        (box :class "test2"
+                        :style "border-radius: 50%;"
+                        :halign "center"
+                        :valign "center"
+                        :width 8
+                        :height 8
+                    )                    
+                )
+
+                (scale ;;:class "test2"
+                    :min 0
+                    :max 101
+                    :value 50
+                    :onchange "{}"
+                    ;;:marks "0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100"
+                )
+            )
+
+            (button 
+
+                (label :text "lulw")
+            )
+        )
+    )
+)

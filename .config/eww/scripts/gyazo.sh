@@ -2,16 +2,14 @@
 
 apiKey=$( echo "$GYAZO_API_KEY" )
 
-if [[ $# -eq 0 || -z "$apiKey" ]]; then
+if [[ -z "$apiKey" ]]; then
     exit
 
 fi
 
-selectedArea=$1
 id=$( tr -dc A-Za-z0-9 </dev/urandom | head -c 10; echo )
 tmpFile="/tmp/image_upload_${id}.png"
-
-grim -g "$selectedArea" "$tmpFile"
+grim -g "$( slurp -w0 )" "$tmpFile"
 
 if [[ ! -f "$tmpFile" ]]; then
     exit
@@ -33,5 +31,5 @@ fi
 body=$( echo "$result" | awk 'BEGIN { RS="\r\n\r\n" } NR==2' )
 url=$( echo "$body" | jq -r '.permalink_url' )
 
-xdg-open "$url" &
+xdg-open "$url"
 rm "$tmpFile"

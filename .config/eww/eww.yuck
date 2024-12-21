@@ -3,34 +3,39 @@
 (include "layout/power_menu.yuck")
 (include "layout/search_menu.yuck")
 (include "layout/systray.yuck")
-(include "layout/workspace_menu.yuck")
-(include "layout/workspaces.yuck")
+(include "layout/settings.yuck")
 
 (defwindow statusbar
     :monitor 0
     :geometry (geometry
         :width "100%"
-        :height 48
+        :height 88
         :anchor "bottom center"
     )
-    :stacking "fg"
+    :stacking "bg"
     :exclusive true
     
     (box :class "status-bar"
         :orientation "horizontal"
         :space-evenly false
         :spacing 10
-        :height statusbar_height
+        :width { res_width - 2 * 20 }
+        :height 48
+        :hexpand false
+        :vexpand false
+        :halign "center"
+        :valign "center"
                 
         (box :class "left-menu"
             :orientation "horizontal"
-            :space-evenly true
+           ;; :space-evenly true
+            :width 256
+            :space-evenly false
             :halign "start"
             :spacing 8
                 
-            (button :class { power_menu_hidden ? "button-inactive" : "button-active" }
-                :width 24
-                :onclick "scripts/menu_state.sh power_menu_hidden &"
+            (button :width 24
+                :onclick "eww open powermenu"
                 
                 (image :image-height 24
                     :path "images/apps.svg"
@@ -38,23 +43,64 @@
             )
             
             (button :width 24
-                :onclick "scripts/menu_state.sh search_menu_hidden &"
+                :onclick "eww open search"
                 
                 (image :image-height 24
                     :path "images/search.svg"
                 )
             )
-            
-            (button :width 24
-                :onclick { workspace_menu_hidden ? "eww open workspaces" : "eww close workspaces" } ;;"scripts/menu_state.sh workspace_menu_hidden &"
+
+            (eventbox
+                :onhover "eww update workspaceMenuVisible=true"
+                :onhoverlost "eww update workspaceMenuVisible=false"
                 
-                (image :image-height 24
-                    :path "images/fullscreen_exit.svg"
+                (box :space-evenly false
+
+                    (image :image-height 24
+                        :path "images/fullscreen_exit.svg"
+                    )
+
+                    (revealer :transition "slideright"
+                        :reveal workspaceMenuVisible
+
+                        (box
+
+                            (for i in { jq("null", "[range(5)+1]") }
+                                
+                                (button :onclick "hyprctl dispatch workspace ${i}"
+                                    :class { i == currentWorkspace ? "workspace-active-button" : jq(usedWorkspaces, "any(.[]; . == ${i})") ? "workspace-open-button" : "workspace-empty-button" }
+                                    :style "padding: 0px 8px;"
+
+                                    i
+                                )
+                            )
+                        )
+                    )
                 )
             )
         )
-        
-        (button :hexpand true
+
+        (stack :same-size false
+            :selected { workspaceMenuHidden ? 0 : 1 }
+            :hexpand true
+
+            "WIP"
+
+            (box :hexpand true
+                ;;:class "test2"
+                :space-evenly false
+                :halign "center"
+
+                (for i in { jq("null", "[range(5)+1]") }
+                    
+                    (button :onclick "hyprctl dispatch workspace ${i}"
+                        :class { i == currentWorkspace ? "workspace-active-button" : jq(usedWorkspaces, "any(.[]; . == ${i})") ? "workspace-open-button" : "workspace-empty-button" }
+                        :style "padding: 0px 8px;"
+
+                        i
+                    )
+                )
+            )
         )
         
         (box :class "right-menu"
@@ -62,26 +108,28 @@
             :space-evenly false
             :spacing 16
 
-            (button :onclick "scripts/menu_state.sh systray_hidden &"
+            (button :onclick "eww open systray && eww update systray_hidden=false"
 
-                (image :path { systray_hidden == true ? "images/expand_less.svg" : "images/expand_more.svg" })
+                (image :path { systray_hidden == true ? "images/expand_less-new.svg" : "images/expand_more-new.svg" })
             )
             
-            (button
+            (button :onclick "eww open settings && eww update settings_hidden=false"
                 :hexpand true
+                :valign "center"
 
                 (box :orientation "horizontal"
                     :space-evenly false
                     :spacing 8
 
-                    (image :path "images/wifi.svg")
-                    (image :path "images/bluetooth.svg")
-                    (image :path "images/settings_ethernet.svg")
+                    (image :path "images/wifi-new.svg")
+                    (image :path "images/bluetooth-new.svg")
+                    (image :path "images/settings_ethernet-new.svg")
                     (label :text "|")
                     (label :text time)
                 )
             )
-            (button (image :path "images/notifications.svg"))
+            
+            (button (image :path "images/notifications-new.svg"))
         )
     )
 )
