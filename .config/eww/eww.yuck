@@ -38,7 +38,7 @@
                 :onclick "eww open powermenu"
                 
                 (image :image-height 24
-                    :path "images/apps.svg"
+                    :path "assets/apps.svg"
                 )
             )
             
@@ -46,7 +46,7 @@
                 :onclick "eww open search"
                 
                 (image :image-height 24
-                    :path "images/search.svg"
+                    :path "assets/search.svg"
                 )
             )
 
@@ -57,7 +57,7 @@
                 (box :space-evenly false
 
                     (image :image-height 24
-                        :path "images/fullscreen_exit.svg"
+                        :path "assets/fullscreen_exit.svg"
                     )
 
                     (revealer :transition "slideright"
@@ -110,7 +110,7 @@
 
             (button :onclick "eww open systray && eww update systray_hidden=false"
 
-                (image :path { systray_hidden == true ? "images/expand_less-new.svg" : "images/expand_more-new.svg" })
+                (image :path { systray_hidden == true ? "assets/expand_less-new.svg" : "assets/expand_more-new.svg" })
             )
             
             (button :onclick "eww open settings && eww update settings_hidden=false"
@@ -121,15 +121,15 @@
                     :space-evenly false
                     :spacing 8
 
-                    (image :path "images/wifi-new.svg")
-                    (image :path "images/bluetooth-new.svg")
-                    (image :path "images/settings_ethernet-new.svg")
+                    (image :path "assets/wifi-new.svg")
+                    (image :path "assets/bluetooth-new.svg")
+                    (image :path "assets/settings_ethernet-new.svg")
                     (label :text "|")
                     (label :text time)
                 )
             )
             
-            (button (image :path "images/notifications-new.svg"))
+            (button (image :path "assets/notifications-new.svg"))
         )
     )
 )
