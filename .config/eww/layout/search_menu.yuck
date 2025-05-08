@@ -45,7 +45,7 @@
 
                     (for app in applications
 
-                        (button :onclick "gtk-launch ${app.exec} > debug.txt 2>&1 &"
+                        (button :onclick "gtk-launch ${app.exec} &"
                             :class "app-card"
 
                             (box :orientation "horizontal"

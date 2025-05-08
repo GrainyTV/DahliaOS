@@ -68,7 +68,7 @@
                             (for i in { jq("null", "[range(5)+1]") }
                                 
                                 (button :onclick "hyprctl dispatch workspace ${i}"
-                                    :class { i == currentWorkspace ? "workspace-active-button" : jq(usedWorkspaces, "any(.[]; . == ${i})") ? "workspace-open-button" : "workspace-empty-button" }
+                                    :class { i == active_workspace ? "workspace-active-button" : jq(workspaces_in_use, "any(.[]; . == ${i})") ? "workspace-open-button" : "workspace-empty-button" }
                                     :style "padding: 0px 8px;"
 
                                     i
@@ -94,7 +94,7 @@
                 (for i in { jq("null", "[range(5)+1]") }
                     
                     (button :onclick "hyprctl dispatch workspace ${i}"
-                        :class { i == currentWorkspace ? "workspace-active-button" : jq(usedWorkspaces, "any(.[]; . == ${i})") ? "workspace-open-button" : "workspace-empty-button" }
+                        :class { i == active_workspace ? "workspace-active-button" : jq(workspaces_in_use, "any(.[]; . == ${i})") ? "workspace-open-button" : "workspace-empty-button" }
                         :style "padding: 0px 8px;"
 
                         i
