@@ -1,8 +1,29 @@
-/*
-.config/*
-!.config/
-!.config/eww/
-!.config/hypr/
-!refind/
-!.bashrc
+# Root location ($HOME) [0]
+*
 !.gitignore
+!.bashrc
+
+# Config folder [1]
+!.config/
+
+# Alacritty [2]
+!.config/alacritty/
+!.config/alacritty/*
+
+# Elkowar wacky widgets [2]
+!.config/eww/
+!.config/eww/*
+!.config/eww/assets/*
+!.config/eww/layout/*
+!.config/eww/lookandfeel/*
+!.config/eww/scripts/*
+
+# GTK [2]
+!.config/gtk-3.0/
+!.config/gtk-3.0/*
+
+# Hyprland [2]
+!.config/hypr/
+!.config/hypr/*
+!.config/hypr/background/*
+!.config/hypr/modules/*

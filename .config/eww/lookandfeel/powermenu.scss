@@ -1,0 +1,39 @@
+.power-menu {
+    background-color: $primary-dark-gray;
+    border-radius: 1em;
+    padding: 0.15em;
+    box-shadow: 0 0 1em $primary-black;
+}
+
+.power-menu-texts {
+    color: $primary-black;
+    padding: 1em;
+}
+
+.power-menu-buttons {
+    background-color: $primary-white;
+    border-radius: 0 0 1em 1em;
+    padding: 0 1em 1em 1em;
+}
+
+.power-button {
+    margin-top: 1em;
+    background-color: $primary-orange;
+    border-radius: 0.35em;
+}
+
+.power-button:hover {
+    background-color: $dark-orange;
+}
+
+.power-button-entities {
+    padding-left: 4px;
+}
+
+.power-button-entities > label {
+    color: $primary-white;
+}
+
+.title {
+    font-size: 1.6em;
+}

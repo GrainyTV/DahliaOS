@@ -45,17 +45,19 @@
 
                     (for app in applications
 
-                        (button :onclick "gtk-launch ${app.exec} &"
+                        (button :onclick "gtk-launch ${app.exec} > debug.txt 2>&1 &"
                             :class "app-card"
 
                             (box :orientation "horizontal"
                                 :space-evenly false
                                 :spacing 8
                                 
-                                (image :path { app.icon }
-                                    :image-width { app.padded ? 64 : 64 - 2 * iconPadding }
-                                    :image-height { app.padded ? 64 : 64 - 2 * iconPadding }
-                                    :style "padding: ${ app.padded ? 0 : iconPadding }px;"
+                                (image ;;:path { app.icon }
+                                    :icon { app.icon }
+                                    :icon-size "dialog"
+                                    ;;:image-width { app.padded ? 64 : 64 - 2 * iconPadding }
+                                    ;;:image-height { app.padded ? 64 : 64 - 2 * iconPadding }
+                                    ;;:style "padding: ${ app.padded ? 0 : iconPadding }px;"
                                 )
                                 
                                 (box :orientation "vertical"
@@ -64,12 +66,12 @@
                                     :valign "center"
 
                                     (label :class "app-card-title" 
-                                        :text "${app.title}"
+                                        :text "${app.name}"
                                         :xalign 0
                                     )
                                     
                                     (label :class "app-card-description" 
-                                        :text "${app.description}"
+                                        :text "${app.desc}"
                                         :xalign 0
                                     )
                                 )

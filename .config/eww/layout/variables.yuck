@@ -14,11 +14,9 @@
 (defvar workspaceMenuVisible false)
 (defvar settings_hidden true)
 
-
-;; JSON Variables
-(defvar applications "[]")
-
 ;; Listening Variables
+(deflisten applications :initial "[]" "./scripts/appsearch.sh --monitor")
+
 (deflisten currentWorkspace :initial 1
     "/home/personal/Documents/Test/Coding/UserSpace/workspaces/Program.fs --active"
 )

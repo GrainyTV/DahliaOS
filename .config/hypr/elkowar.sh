@@ -1,10 +1,16 @@
 #!/bin/bash
 
-eww daemon
-sleep 1s
+function isEwwActive ()
+{
+    eww ping | grep "pong"
+    return $?
+}
 
 eww open statusbar
-sleep 1s
 
-EWW="$HOME/.config/eww"
-$EWW/scripts/search.zig &
+while [[ ! $(isEwwActive) ]]
+do
+    sleep 1
+done
+
+$(eww get EWW_CONFIG_DIR)/scripts/appsearch.sh --populate

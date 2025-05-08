@@ -1,0 +1,10 @@
+[general]
+import = [
+    "inferno.toml"
+]
+
+[window]
+padding = { x = 8, y = 8 }
+
+[font]
+normal = { family = "FiraMono" }
