@@ -1,40 +1,60 @@
 #!/usr/bin/env bash
 
 function main ()
-{
-    if [[ "$1" == "--active" ]]
-    then
-        local selectedWorkspaceId=1
+{   
+    case "$1" in
+        "--active")
+            local selectedWorkspace=1
 
-        while true
-        do
-            local activeWorkspaceId=$(hyprctl activeworkspace -j | jaq .id)
+            while true
+            do
+                local activeWorkspace=$(hyprctl activeworkspace -j | jaq '.id')
 
-            if [[ $activeWorkspaceId -ne $selectedWorkspaceId ]]
+                if [[ $activeWorkspace -ne $selectedWorkspace ]]
+                then
+                    selectedWorkspace=$activeWorkspace
+                    echo "$selectedWorkspace"
+                fi
+
+                sleep 0.05
+            done ;;
+
+        "--in-use")
+            local registeredWorkspacesInUse="[1]"
+
+            while true
+            do
+                local workspacesInUse=$(hyprctl workspaces -j | jaq -c '[.[] | .id]')
+
+                if [[ "$workspacesInUse" != "$registeredWorkspacesInUse" ]]
+                then
+                    registeredWorkspacesInUse="$workspacesInUse"
+                    echo "$registeredWorkspacesInUse"
+                fi
+
+                sleep 0.05
+            done ;;
+
+        "--switch-left")
+            local activeWorkspace=$(eww get active_workspace)
+            local workspacesInUse=$(eww get workspaces_in_use)
+            local chosenWorkspaceOrNull=$(echo "$workspacesInUse" | jaq "map(select(. < $activeWorkspace)) | max")
+
+            if [[ "$chosenWorkspaceOrNull" != "null" ]]
             then
-                selectedWorkspaceId=$activeWorkspaceId
-                echo "$selectedWorkspaceId"
-            fi
+                hyprctl dispatch workspace "$chosenWorkspaceOrNull"
+            fi ;;
 
-            sleep 0.05
-        done
+        "--switch-right")
+            local activeWorkspace=$(eww get active_workspace)
+            local workspacesInUse=$(eww get workspaces_in_use)
+            local chosenWorkspaceOrNull=$(echo "$workspacesInUse" | jaq "map(select(. > $activeWorkspace)) | max")
 
-    elif [[ "$1" == "--in-use" ]]; then
-        local registeredWorkspacesInUse="[1]"
-
-        while true
-        do
-            local workspacesInUse=$(hyprctl workspaces -j | jaq -c '[.[] | .id]')
-
-            if [[ "$workspacesInUse" != "$registeredWorkspacesInUse" ]]
+            if [[ "$chosenWorkspaceOrNull" != "null" ]]
             then
-                registeredWorkspacesInUse="$workspacesInUse"
-                echo "$registeredWorkspacesInUse"
-            fi
-
-            sleep 0.05
-        done
-    fi
+                hyprctl dispatch workspace "$chosenWorkspaceOrNull"
+            fi ;;
+    esac
 }
 
 main "$1"
