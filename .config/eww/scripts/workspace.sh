@@ -48,7 +48,7 @@ function main ()
         "--switch-right")
             local activeWorkspace=$(eww get active_workspace)
             local workspacesInUse=$(eww get workspaces_in_use)
-            local chosenWorkspaceOrNull=$(echo "$workspacesInUse" | jaq "map(select(. > $activeWorkspace)) | max")
+            local chosenWorkspaceOrNull=$(echo "$workspacesInUse" | jaq "map(select(. > $activeWorkspace)) | min")
 
             if [[ "$chosenWorkspaceOrNull" != "null" ]]
             then

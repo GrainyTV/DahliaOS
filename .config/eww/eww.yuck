@@ -80,24 +80,24 @@
             )
         )
 
-        (stack :same-size false
-            :selected { workspaceMenuHidden ? 0 : 1 }
+        (box :class "middle-menu"
+            :orientation "horizontal"
+            :space-evenly false
             :hexpand true
+            :halign "center"
 
-            "WIP"
+            (for app in statusbar_apps
 
-            (box :hexpand true
-                ;;:class "test2"
-                :space-evenly false
-                :halign "center"
+                (button :width 48
+                    :height 48 
+                    :onclick { app.visible
+                               ? "hyprctl dispatch tagwindow +${active_workspace} address:${app.address} && hyprctl dispatch movetoworkspacesilent special:Hidden,address:${app.address}"
+                               : "hyprctl dispatch tagwindow -- -${active_workspace} address:${app.address} && hyprctl dispatch movetoworkspacesilent ${active_workspace},address:${app.address}"
+                            }
+                    :tooltip { app.address }
 
-                (for i in { jq("null", "[range(5)+1]") }
-                    
-                    (button :onclick "hyprctl dispatch workspace ${i}"
-                        :class { i == active_workspace ? "workspace-active-button" : jq(workspaces_in_use, "any(.[]; . == ${i})") ? "workspace-open-button" : "workspace-empty-button" }
-                        :style "padding: 0px 8px;"
-
-                        i
+                    (image :icon { app.icon }
+                        :icon-size "dnd"
                     )
                 )
             )

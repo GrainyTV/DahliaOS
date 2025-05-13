@@ -18,6 +18,7 @@
 (deflisten applications :initial "[]" "./scripts/appsearch.sh --monitor")
 (deflisten active_workspace :initial 1 "./scripts/workspace.sh --active")
 (deflisten workspaces_in_use :initial "[1]" "./scripts/workspace.sh --in-use")
+(deflisten statusbar_apps :initial "[]" "./scripts/iconlocate.sh")
 
 ;; Functional Variables
 (defpoll time :interval "1s"
