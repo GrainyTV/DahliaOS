@@ -1,48 +1,7 @@
-@import "./lookandfeel/colors";
+@import "./lookandfeel/variables";
+@import "./lookandfeel/statusbar";
 @import "./lookandfeel/popup";
 @import "./lookandfeel/settings";
-@import "./lookandfeel/powermenu";
+@import "./lookandfeel/power";
 @import "./lookandfeel/search";
 @import "./lookandfeel/workspaces";
-
-* {
-    all: unset;
-    color: $primary-black;
-    font-family: 'Inter Medium';
-    font-feature-settings: 'tnum';
-}
-
-.status-bar {
-    background-color: $primary-white;
-    border-radius: 8px;
-    box-shadow: 0 0 0.25em $primary-black;
-}
-
-.left-menu {
-    padding: 0.5em;
-}
-
-.button-inactive:hover {
-    background-color: rgba($primary-white, 0.75);
-}
-
-.button-inactive {
-    border-radius: 0.35em;
-}
-
-.button-active {
-    border-radius: 0.35em;
-    background-color: $primary-orange;
-}
-
-.cancel-button {
-    background-color: rgba($primary-orange, 0.5);
-}
-
-.test {
-    background-color: black;
-}
-
-.test2 {
-    background-color: $primary-orange;
-}

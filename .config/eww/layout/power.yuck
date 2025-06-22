@@ -1,0 +1,44 @@
+(defwindow power-window
+    :monitor 0
+    :geometry (geometry
+        :width "${320 + 40}"
+        :height "${280 + 40}"
+        :anchor "center"
+    )
+    :stacking "overlay"
+
+    (box :class "power-main"
+        :width 320
+        :height 280
+        :valign "center"
+        :halign "center"
+        :space-evenly false
+        :orientation "vertical"
+
+        (box :class "power-main-upper" 
+            :orientation "vertical"
+
+            (label :class "power-main-upper-title" :text "Power Menu" :xalign 0)
+            (label :class "power-main-upper-semititle" :text "Choose what you want to do" :xalign 0)
+        )
+
+        (box :class "power-main-lower"
+            :orientation "vertical"
+
+            (powercmd :whatitdoes "Power off"
+                :command "loginctl poweroff"
+                :icon "download"
+            )
+            
+            (powercmd :whatitdoes "Sleep"
+                :command "loginctl suspend"
+                :icon "brightness_4W"
+            )
+            
+            (powercmd :whatitdoes "Restart"
+                :command "loginctl reboot"
+                :icon "refreshW"
+            )
+        )
+    )
+)

@@ -1,0 +1,177 @@
+(defwidget popup [cancel width height]
+    
+    (box :orientation "vertical"
+        :space-evenly false
+
+        (button :onclick cancel
+            :height { round((res_height - statusbar_height - height) / 2, 0) }
+        )
+        
+        (box
+            :orientation "horizontal"
+            :space-evenly false
+            :vexpand true
+
+            (button :onclick cancel
+                :width { round((res_width - width) / 2, 0) }
+            )
+
+            (children)
+            
+            (button :onclick cancel
+                :width { round((res_width - width) / 2, 0) }
+            )
+        )
+        
+        (button :onclick cancel 
+            :height { round((res_height - statusbar_height - height) / 2, 0) + statusbar_height }
+        )
+    )
+)
+
+(defwidget positionedPopup [cancel x y width height]
+    
+    (box :orientation "vertical"
+        :space-evenly false
+
+        (button :onclick cancel
+            :height y
+        )
+        
+        (box :orientation "horizontal"
+            :space-evenly false
+            :height height
+
+            (button :onclick cancel
+                :width x
+            )
+
+            (box :width width
+
+                (children)
+            )
+            
+            (button :onclick cancel
+                :hexpand true
+            )
+        )
+        
+        (button :onclick cancel 
+            :vexpand true
+        )
+    )
+)
+
+(defwidget triSwitchSlider [name value command stops]
+
+    (box :orientation "horizontal"
+        :space-evenly false
+        :spacing 8
+        :valign "center"
+
+        (button :onclick "eww state"
+            :class "settings-gray-button"
+
+            (image :path "images/${name}_${ value == 0 ? "off" : "on" }.svg"
+                :image-width 48
+                :image-height 48
+            )
+        )
+        
+        (box :hexpand true
+
+            (fancySlider2 :stops stops
+                :value value
+                :command command
+                :size 6
+            )
+        )
+
+        (button :onclick "eww state"
+            :class "settings-gray-button"
+
+            (image :path "images/expand_more.svg"
+                :image-width 48
+                :image-height 48
+            )
+        )
+    )
+)
+
+(defwidget fancySlider [stops value command]
+    
+    (box :orientation "horizontal"
+        :valign "center"
+        :vexpand false
+        :height 6
+        :space-evenly true
+        :spacing { round((278 - (stops + 1) * 4) / stops, 0) }
+        :class "slider-container"
+        :style "background: linear-gradient(90deg, #ff3d00 ${ value * 100 }%, #fbd1c4 ${ value * 100 }%);"
+
+        (for stop in { jq("null", "[range(0; (${stops} + 1))]") }
+
+            (button :active { value == stop / stops ? false : true }
+                :class { value == stop / stops ? "selected-stop" : "slider-stop" }
+                :onclick "${ command } ${ stop / stops * 100 }%"
+                :valign "center"
+                :halign "start"
+                :width 4
+                :height 4
+            )
+        )
+    )
+) 
+
+(defwidget fancySlider2 [size stops value command]
+
+    (overlay
+
+        (box :valign "center"
+            :height size
+            :style "background-color: rgba(107, 113, 127, 0.8);"
+        )
+
+        (box :orientation "horizontal"
+            :valign "center"
+            :height size
+            :spacing 10
+
+            (for i in { jq("null", "[range(0; (${stops} + 1))]") }
+
+                (box :class "test2"
+                    :style "border-radius: 50%;"
+                    :halign "start"
+                    :valign "center"
+                    :width size
+                    :height size
+                )
+            )
+        )
+
+        (scale
+            :min 0
+            :max { stops + 1 }
+            :value value
+            :onchange "{}"
+            :marks { jq("null", "[range(0; (${stops} + 1)) | tostring] | join(\", \")") }
+        )
+    )
+)
+
+
+;; ------------------------------------------------------------
+
+(defwidget powercmd [whatitdoes command icon]
+
+    (button :onclick command
+
+        (box :class "power-main-lower-btn" 
+            :orientation "horizontal"
+            :space-evenly false
+
+            (image :path "assets/${icon}.svg" :image-width 40)
+            (label :text whatitdoes)
+        )
+    )
+)

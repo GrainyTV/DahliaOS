@@ -2,6 +2,7 @@
 *
 !.gitignore
 !.bashrc
+!README.md
 
 # Config folder [1]
 !.config/

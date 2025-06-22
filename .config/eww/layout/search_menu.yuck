@@ -28,7 +28,7 @@
                 )
 
                 (image :class "search-input-container-icon"
-                    :path "images/search.svg"
+                    :path "assets/search.svg"
                     :image-width 48
                     :image-height 48
                     :halign "start"
