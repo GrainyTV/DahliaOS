@@ -1,12 +1,17 @@
 # dahliaOS dotfiles
-Dotfiles for creating a daily-drivable Hyprland setup that resembles dahliaOS in its looks. What is dahliaOS, you might ask? It is a fully custom operating system based on Linux using Flutter for its UI, giving everything a really clean Material style. Unfortunately the project is not in a usable state, but this is where I got the inspiration from to make this. You can read more about it **[here](https://dahliaos.io/)**.
+Dotfiles for creating a daily-drivable Hyprland setup that resembles **[dahliaOS](https://dahliaos.io)** in its looks.
 
 ## Default Applications
-- File manager: PCManFM-Qt
-- Terminal: Alacritty
-- Shell: Bash
+- Shell: **Bash**
+- Terminal: **Alacritty**
+- File manager: **PCManFM-Qt**
+- Archiver: **LXQt Archiver**
 
 ## Dependencies
-- GNU Parallel
+- parallel
 - jaq
 - socat
+- gtk+3
+- gnome-themes-extra
+- gtk-engine-murrine
+- sassc

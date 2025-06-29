@@ -3,6 +3,7 @@
 !.gitignore
 !.bashrc
 !README.md
+!install.sh
 
 # Config folder [1]
 !.config/
@@ -28,3 +29,12 @@
 !.config/hypr/*
 !.config/hypr/background/*
 !.config/hypr/modules/*
+
+# PCManFM-Qt [3]
+!.config/pcmanfm-qt/
+!.config/pcmanfm-qt/default/
+!.config/pcmanfm-qt/default/settings.conf
+
+# Font configuration [2]
+!.config/fontconfig/
+!.config/fontconfig/fonts.conf
