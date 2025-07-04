@@ -164,14 +164,15 @@
 
 (defwidget powercmd [whatitdoes command icon]
 
-    (button :onclick command
+    (button
+        :class "power-main-lower-btn"
+        :onclick command
 
-        (box :class "power-main-lower-btn" 
-            :orientation "horizontal"
+        (box
             :space-evenly false
 
             (image :path "assets/${icon}.svg" :image-width 40)
-            (label :text whatitdoes)
+            (label :class "power-main-lower-txt" :text whatitdoes)
         )
     )
 )

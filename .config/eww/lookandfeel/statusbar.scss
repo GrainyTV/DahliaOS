@@ -7,3 +7,8 @@
 .left-menu {
     //padding: 0.5em;
 }
+
+.statusbar-main-left-active {
+    background-color: $primary-orange;
+    transition: 0.25s ease;
+}

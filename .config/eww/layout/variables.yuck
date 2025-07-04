@@ -14,6 +14,8 @@
 (defvar workspaceMenuVisible false)
 (defvar settings_hidden true)
 
+(defvar powercontrolHidden true)
+
 ;; Listening Variables
 (deflisten applications :initial "[]" "./scripts/appsearch.sh --monitor")
 (deflisten active_workspace :initial 1 "./scripts/workspace.sh --active")

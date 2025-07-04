@@ -27,10 +27,17 @@
             :halign "start"
             :spacing 8
                 
-            (button :width 24
-                :onclick "eww open power-window"
+            (button
+                :class {
+                    powercontrolHidden ?
+                    "statusbar-main-left-default" :
+                    "statusbar-main-left-active"
+                }
+                :width 24
+                :onclick "scripts/externalwindow.sh powercontrol &"
                 
-                (image :image-height 24
+                (image 
+                    :image-height 24
                     :path "assets/apps.svg"
                 )
             )

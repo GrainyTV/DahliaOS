@@ -1,0 +1,38 @@
+.power-main {
+    border-radius: $window-corner-size;
+    box-shadow: 0 0 3px 1px $shadow-color;
+}
+
+.power-main-upper {
+    border-radius: $window-corner-size $window-corner-size 0 0;
+    background-color: $gray-92;
+    padding: 14px 14px 10px 14px;
+}
+
+.power-main-upper-title {
+    font-size: 32px;
+    font-weight: $font-weight-bold;
+}
+
+.power-main-lower {
+    border-radius: 0 0 $window-corner-size $window-corner-size;
+    background-color: white;
+    padding: 14px;
+}
+
+.power-main-lower-btn {
+    background-color: $primary-orange;
+    padding-left: 4px;
+    border-radius: $window-corner-size;
+    transition: 0.25s ease;
+}
+
+.power-main-lower-btn:hover {
+    background-color: $primary-orange-dark;
+}
+
+.power-main-lower-txt {
+    color: white;
+    font-weight: $font-weight-semibold;
+    padding-left: 4px;
+}

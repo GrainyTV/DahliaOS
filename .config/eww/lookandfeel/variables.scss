@@ -18,12 +18,29 @@ $primary-light-gray: #e0e0e0;
 $dark-orange: #ce3100;
 $dark-gray: #c9c9c9;
 
+// NEW API
+// -----------------------------------------
+
 $gray-92: #ebebeb;
+$shadow-color: #a6aebf;
+$primary-orange-dark: #d03d00;
+
 $window-corner-size: 8px;
+
+$default-font-name: 'Inter';
+$default-font-size: 16px;
+$fixed-width-numbers: 'tnum';
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
 
 * {
     all: unset;
     color: $primary-black;
-    font-family: 'Inter Medium';
-    font-feature-settings: 'tnum';
+    font-family: $default-font-name;
+    font-weight: $font-weight-medium;
+    font-feature-settings: $fixed-width-numbers;
+    font-size: $default-font-size;
 }
