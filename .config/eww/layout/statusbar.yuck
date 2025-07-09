@@ -2,89 +2,99 @@
     :monitor 0
     :geometry (geometry
         :width "100%"
-        :height 88
+        :height {48 + 2 * 20}
         :anchor "bottom center"
     )
     :stacking "bg"
     :exclusive true
     
-    (box :class "status-bar"
-        :orientation "horizontal"
+    (box 
+        :class "statusbar-main"
         :space-evenly false
-        :spacing 10
-        :width { res_width - 2 * 20 }
         :height 48
-        :hexpand false
-        :vexpand false
-        :halign "center"
         :valign "center"
                 
-        (box :class "left-menu"
-            :orientation "horizontal"
-           ;; :space-evenly true
-            :width 256
+        (box
+            :class "statusbar-main-left"
+            :width 284
             :space-evenly false
-            :halign "start"
-            :spacing 8
+            :spacing 4
                 
             (button
                 :class {
                     powercontrolHidden ?
-                    "statusbar-main-left-default" :
-                    "statusbar-main-left-active"
+                    "statusbar-icon-default" :
+                    "statusbar-icon-active"
                 }
-                :width 24
+                :width 30
+                :height 30
+                :halign "center"
+                :valign "center"
                 :onclick "scripts/externalwindow.sh powercontrol &"
                 
-                (image 
-                    :image-height 24
-                    :path "assets/apps.svg"
-                )
+                (image :path "assets/apps.svg")
             )
             
-            (button :width 24
-                :onclick "eww open search"
+            (button
+                :class {
+                    appsearchHidden ?
+                    "statusbar-icon-default" :
+                    "statusbar-icon-active"
+                }
+                :width 30
+                :height 30
+                :halign "center"
+                :valign "center"
+                :onclick "scripts/externalwindow.sh appsearch &"
                 
-                (image :image-height 24
-                    :path "assets/search.svg"
-                )
+                (image :path "assets/search.svg")
             )
 
             (eventbox
-                :onhover "eww update workspaceMenuVisible=true"
-                :onhoverlost "eww update workspaceMenuVisible=false"
+                :onhover "eww update workspacepickerHidden=false"
+                :onhoverlost "eww update workspacepickerHidden=true"
+                :width 30
+                :height 30
+                :halign "center"
+                :valign "center"
                 
-                (box :space-evenly false
+                (box
+                    :space-evenly false
 
-                    (image :image-height 24
+                    (image 
+                        :class {
+                            workspacepickerHidden ?
+                            "statusbar-icon-default" :
+                            "statusbar-icon-active"
+                        }
+                        :width 30
+                        :height 30
+                        :halign "center"
+                        :valign "center"
                         :path "assets/fullscreen_exit.svg"
                     )
 
-                    (revealer :transition "slideright"
-                        :reveal workspaceMenuVisible
+                    (revealer
+                        :transition "slideright"
+                        :reveal {!workspacepickerHidden}
 
                         (box
+                            :class "statusbar-main-left-workspaces"
+                            :spacing 4
 
-                            (for i in { jq("null", "[range(5)+1]") }
-                                
-                                (button :onclick "hyprctl dispatch workspace ${i}"
-                                    :class { i == active_workspace ? "workspace-active-button" : jq(workspaces_in_use, "any(.[]; . == ${i})") ? "workspace-open-button" : "workspace-empty-button" }
-                                    :style "padding: 0px 8px;"
-
-                                    i
-                                )
-                            )
+                            (for i in {jq("null", "[range(5)+1]")} (workspace :number i))
                         )
                     )
                 )
             )
         )
 
-        (box :class "middle-menu"
-            :orientation "horizontal"
+        (box
+            :class "statusbar-main-middle"
             :space-evenly false
             :hexpand true
-            :halign "center"
+
+            ;;(label :text {EWW_NET})
 
             (for app in statusbar_apps
 
@@ -103,25 +113,24 @@
             )
         )
         
-        (box :class "right-menu"
-            :orientation "horizontal"
+        (box
+            :class "statusbar-main-right"
             :space-evenly false
-            :spacing 16
-
-            ;;(button :onclick "eww open systray && eww update systray_hidden=false"
-            ;;
-            ;;    (image :path { systray_hidden == true ? "assets/expand_less-new.svg" : "assets/expand_more-new.svg" })
-            ;;)
+            :width 284
             
-            (button :onclick "eww open settings && eww update settings_hidden=false"
+            (button
+                :onclick "scripts/externalwindow.sh settings &"
                 :hexpand true
-                :valign "center"
 
                 (box :orientation "horizontal"
                     :space-evenly false
                     :spacing 8
 
-                    (image :path "assets/wifi-new.svg")
+                    (image
+                        :visible internet
+                        :path "assets/wifi-new.svg"
+                    )
+
                     (image :path "assets/bluetooth-new.svg")
                     (image :path "assets/settings_ethernet-new.svg")
                     (label :text "|")

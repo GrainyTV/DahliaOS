@@ -1,8 +1,8 @@
 (defwindow powercontrol
     :monitor 0
     :geometry (geometry
-        :width "${320 + 10}"
-        :height "${280 + 10}"
+        :width {320 + 10}
+        :height {280 + 10}
         :anchor "center"
     )
     :stacking "overlay"

@@ -176,3 +176,65 @@
         )
     )
 )
+
+(defwidget appcard [entry]
+
+    (button
+        :class "appcard-main"
+        :onclick "gtk-launch ${entry.exec} &"
+        :vexpand true
+
+        (box
+            :space-evenly false
+            
+            (image
+                :icon {entry.icon}
+                :icon-size "dialog"
+            )
+            
+            (box
+                :class "appcard-textholder"
+                :orientation "vertical"
+                :space-evenly false
+                :hexpand true
+
+                (label
+                    :class "appcard-title" 
+                    :text {entry.name}
+                    :xalign 0
+                )
+                
+                (label
+                    :class "appcard-description"
+                    :vexpand true
+                    :text {entry.desc}
+                    :xalign 0
+                    :wrap true
+                    :show-truncated false
+                )
+            )
+        )
+    )
+)
+
+(defwidget workspace [number]
+
+    (button
+        :width 30
+        :height 30
+        :onclick {
+            number != active_workspace ?
+            "hyprctl dispatch workspace ${number}" :
+            ""
+        }
+        :class {
+            number == active_workspace ?
+            "workspace-active" :
+                jq(workspaces_in_use, "any(.[]; . == ${number})") ?
+                "workspace-open" :
+                "workspace-empty"
+        }
+
+        number
+    )
+)

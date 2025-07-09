@@ -7,7 +7,7 @@
 (defvar debounceTime 0)
 
 ;; Boolean Variables
-(defvar power_menu_hidden true)
+;; (defvar power_menu_hidden true)
 (defvar search_menu_hidden true)
 (defvar systray_hidden true)
 (defvar workspaceMenuHidden true)
@@ -15,6 +15,8 @@
 (defvar settings_hidden true)
 
 (defvar powercontrolHidden true)
+(defvar appsearchHidden true)
+(defvar workspacepickerHidden true)
 
 ;; Listening Variables
 (deflisten applications :initial "[]" "./scripts/appsearch.sh --monitor")
@@ -25,6 +27,12 @@
 ;; Functional Variables
 (defpoll time :interval "1s"
     "date +%H:%M:%S"
+)
+
+(defpoll internet
+    :interval "5s"
+    :initial false
+    "scripts/internet.sh"
 )
 
 (defpoll date :interval "1m"

@@ -1,6 +1,6 @@
 (include "layout/variables.yuck")
 (include "layout/userdefined.yuck")
 (include "layout/powercontrol.yuck")
-(include "layout/search_menu.yuck")
+(include "layout/appsearch.yuck")
 (include "layout/settings.yuck")
 (include "layout/statusbar.yuck")

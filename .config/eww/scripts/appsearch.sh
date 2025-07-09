@@ -131,6 +131,10 @@ function main ()
                 echo "$currentJsonArray"
                 echo "$currentJsonArray" > "$jsonFile"
                 echo "$computedHash" > "$cacheFile"
+
+            elif [[ $(eww get applications) == "[]" ]]
+            then
+                echo "$currentJsonArray"
             fi
 
             sleep 5

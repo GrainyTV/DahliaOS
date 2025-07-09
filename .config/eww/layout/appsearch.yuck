@@ -1,0 +1,51 @@
+(defwindow appsearch
+    :monitor 0
+    :geometry (geometry
+        :width {600 + 10}
+        :height {400 + 10}
+        :anchor "center"
+    )
+    :stacking "overlay"
+    :focusable "ondemand"
+
+    (box
+        :class "appsearch-main"
+        :width 600
+        :height 400
+        :orientation "vertical"
+        :space-evenly false
+
+        (overlay
+            :height 50
+
+            (input
+                :class "appsearch-main-upper-inputfield"
+                :onchange ""
+            )
+            
+            (image
+                :class "appsearch-main-upper-icon"
+                :path "assets/search.svg"
+                :image-width 48
+                :image-height 48
+                :halign "start"
+            )
+        )
+
+        (scroll
+            :class "appsearch-main-lower"
+            :vexpand true
+            :hscroll false
+            :vscroll true
+
+            (box
+                :class "appsearch-main-lower-appcards" 
+                :orientation "vertical"
+                :spacing 14
+                :space-evenly false
+
+                (for app in applications (appcard :entry app))
+            )
+        )  
+    )
+)

@@ -1,3 +1,53 @@
+.appsearch-main {
+    background-color: white;
+    border-radius: 1em;
+    padding: 0.15em;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+}
+
+.appsearch-main-upper-inputfield {
+    padding-left: 50px;
+    border-radius: 1em;
+    background-color: #f5f5f5;
+    transition: border-color 0.3s;
+    border: 1.25px solid $primary-light-gray;
+}
+
+.appsearch-main-lower {
+    //background-color: green;
+}
+
+.appsearch-main-lower-appcards {
+    padding: 14px;
+}
+
+.appcard-main {
+    padding: 2px;
+    border-radius: $window-corner-size;
+    background-color: rgba($gray-92, 0.55);
+    box-shadow: 0 0 2px 1px rgba($shadow-color, 0.55);
+    transition: 0.05s ease;
+}
+
+.appcard-main:hover {
+    background-color: rgba($gray-92, 0.85);
+    box-shadow: 0 0 3px 1px rgba($shadow-color, 0.85);
+}
+
+.appcard-textholder {
+    padding: 0 6px;
+}
+
+.appcard-title {
+    font-size: 18px;
+    font-weight: $font-weight-bold;
+}
+
+.appcard-description {
+    font-size: 14px;
+    color: #606060;
+}
+
 // .search-menu {
 //     background-color: $primary-white;
 //     border-radius: 1em;
@@ -75,13 +125,13 @@
     padding-right: 4px;
 }
 
-.app-card-container {
-    padding: 14px;
-}
+// .app-card-container {
+//     padding: 14px;
+// }
 
-.app-card:not(:first-child) {
-    margin-top: 14px;
-}
+// .app-card:not(:first-child) {
+//     margin-top: 14px;
+// }
 
 .app-card {
     border-radius: 8px;
@@ -100,14 +150,14 @@
     background-color: #ffffff; /* White background on focus */
 }
 
-.app-card-title {
-    font-size: 18px;
-    font-weight: bold;
-}
+// .app-card-title {
+//     font-size: 18px;
+//     font-weight: bold;
+// }
 
-.app-card-description {
-    font-size: 14px;
-    color: #606060; /* Dark gray */
-}
+// .app-card-description {
+//     font-size: 14px;
+//     color: #606060; /* Dark gray */
+// }
 
 

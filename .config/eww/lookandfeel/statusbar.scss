@@ -1,14 +1,64 @@
-.status-bar {
-    background-color: $primary-white;
-    border-radius: 8px;
-    box-shadow: 0 0 0.25em $primary-black;
+// .status-bar {
+//     background-color: $primary-white;
+//     border-radius: 8px;
+//     box-shadow: 0 0 0.25em $primary-black;
+// }
+
+// .left-menu {
+//     //padding: 0.5em;
+// }
+.statusbar-main {
+    background-color: white;
+    border-radius: $window-corner-size;
+    box-shadow: 0 0 3px 1px $shadow-color;
+    margin: 0 20px;
 }
 
-.left-menu {
-    //padding: 0.5em;
+.statusbar-main-left {
+    padding: 0 8px;
 }
 
-.statusbar-main-left-active {
-    background-color: $primary-orange;
+.statusbar-main-left-workspaces {
+    padding-left: 4px;
+}
+
+.statusbar-main-right {
+    background-color: green;
+}
+
+.statusbar-main-middle {
+    //background-color: red;
+}
+
+.statusbar-icon-default,
+.statusbar-icon-active {
+    border-radius: $window-corner-size;
     transition: 0.25s ease;
+}
+
+.statusbar-icon-default:hover {
+    background-color: $gray-92;
+    border: 1.25px solid darkgray;
+}
+
+.statusbar-icon-active {
+    background: linear-gradient(147.5deg, $primary-orange 50%, $secondary-orange);
+}
+
+.workspace-active,
+.workspace-open,
+.workspace-empty {
+    border-radius: $window-corner-size;
+}
+
+.workspace-active {
+    background: linear-gradient(147.5deg, $primary-orange, $secondary-orange);
+}
+
+.workspace-open {
+    background-color: $orange-light;
+}
+
+.workspace-empty {
+    background-color: $gray-92;
 }
