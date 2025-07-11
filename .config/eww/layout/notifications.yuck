@@ -1,0 +1,73 @@
+(defwindow notifications
+    :monitor 0
+    :geometry (geometry
+        :width {284 + 10}
+        :height {60 + 10}
+        :anchor "bottom right"
+    )
+    :stacking "overlay"
+
+    (box
+        :class "notifications-main"
+        :width 284
+        :height 60
+        :halign "center"
+        :valign "center"
+
+        (stack
+            :selected {notification == "null" ? 0 : 1}
+        
+            (label
+                :class "notifications-main-empty"
+                :wrap true
+                :text "No notification has been found in queue 🎉"
+            )
+            (button
+                :class "notifications-main-dismiss"
+                :onclick "makoctl dismiss -n ${notification.id} --no-history"
+
+                (box
+                    :space-evenly false
+                    :spacing 4
+
+                    (box
+                        :orientation "vertical"
+
+                        (stack
+                            :width 40
+                            :height 40
+                            :halign "center"
+                            :valign "center"
+                            :selected {notification.icon != "" ? 0 : 1}
+
+                            (image
+                                :icon {notification.icon}
+                                :icon-size "dialog"
+                            )
+
+                            (label :text "?" :style "background-color: darkgray;border-radius: 50%;")
+                        )
+                    )
+                    
+                    (box
+                        :orientation "vertical"
+                        :space-evenly false
+
+                        (label
+                            :class "notifications-main-dismiss-title"
+                            :text {notification.title}
+                            :xalign 0
+                        )
+                        
+                        (label
+                            :class "notifications-main-dismiss-description"
+                            :text {notification.description}
+                            :xalign 0
+                            :wrap true
+                        )
+                    )
+                )
+            )
+        )
+    )
+)

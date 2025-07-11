@@ -17,6 +17,7 @@
 (defvar powercontrolHidden true)
 (defvar appsearchHidden true)
 (defvar workspacepickerHidden true)
+(defvar notificationsHidden true)
 
 ;; Listening Variables
 (deflisten applications :initial "[]" "./scripts/appsearch.sh --monitor")
@@ -33,6 +34,12 @@
     :interval "5s"
     :initial false
     "scripts/internet.sh"
+)
+
+(defpoll notification
+    :interval "1s"
+    :initital null
+    `busctl -j --user call org.freedesktop.Notifications /fr/emersion/Mako fr.emersion.Mako ListNotifications | jaq -c 'if .data[] | length == 0 then null else .data[] | min_by(.id.data) | {"id":.id.data,"title":.summary.data,"description":.body.data,"icon":.["app-icon"].data} end'`
 )
 
 (defpoll date :interval "1m"

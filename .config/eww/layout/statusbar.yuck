@@ -138,7 +138,27 @@
                 )
             )
             
-            (button (image :path "assets/notifications-new.svg"))
+            (button
+                :class {
+                    notificationsHidden ?
+                    "statusbar-icon-default" :
+                    "statusbar-icon-active"
+                }
+                :width 30
+                :height 30
+                :halign "center"
+                :valign "center"
+                :onclick "scripts/externalwindow.sh notifications &"
+
+                (image
+                    :icon {
+                        notification != "null" ?
+                        "notification-new" :
+                        "notification"
+                    }
+                    :icon-size "large-toolbar"
+                )   
+            )
         )
     )
 )

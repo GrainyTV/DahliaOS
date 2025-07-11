@@ -38,3 +38,7 @@
 # Font configuration [2]
 !.config/fontconfig/
 !.config/fontconfig/fonts.conf
+
+# Mako [2]
+!.config/mako/
+!.config/mako/config

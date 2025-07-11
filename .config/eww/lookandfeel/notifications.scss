@@ -1,0 +1,25 @@
+.notifications-main {
+    background-color: white;
+    padding: 4px;
+    margin: 0 20px;
+    border-radius: $window-corner-size;
+    box-shadow: $window-shadow;
+}
+
+.notifications-main-empty {
+    font-size: 14px;
+}
+
+.notifications-main-dismiss {
+    background-color: $gray-92;
+    padding: 4px;
+}
+
+.notifications-main-dismiss-title {
+    font-size: 16px;
+    font-weight: $font-weight-bold;
+}
+
+.notifications-main-dismiss-description {
+    font-size: 10px;
+}

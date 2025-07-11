@@ -3,4 +3,5 @@
 (include "layout/powercontrol.yuck")
 (include "layout/appsearch.yuck")
 (include "layout/settings.yuck")
+(include "layout/notifications.yuck")
 (include "layout/statusbar.yuck")
